@@ -49,7 +49,7 @@ const FormPost: FC<IFormPostProps> = ({ submit, isEditing }) => {
         <Loading />
       ) : (
         <select
-          {...register("tag", { required: true })}
+          {...register("tagId", { required: true })}
           className="select select-primary text-primary w-full max-w-lg"
           defaultValue="JavaScript"
         >
