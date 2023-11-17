@@ -1,0 +1,16 @@
+version: '3.9'
+services:
+  blog:
+    image: postgres
+    container_name: NextBlog
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - '5432:5432'
+    volumes:
+      - blog:/var/lib/postgresql/data
+volumes:
+  blog:
+    driver: local
