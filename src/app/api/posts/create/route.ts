@@ -11,7 +11,7 @@ export const POST = async (req: Request) => {
         tagId: body.tagId,
       },
     });
-    return NextResponse.json(post, { status: 200 });
+    return NextResponse.json(post, { status: 201 });
   } catch (error) {
     return NextResponse.json(
       { message: "Post could not be created!" },

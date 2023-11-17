@@ -32,7 +32,7 @@ const postId: NextPage<IPostIdProps> = async ({ params }) => {
           {post?.title}
         </h2>
         <p className="text-neutral">{post?.content}</p>
-        <ButtonAction />
+        <ButtonAction id={params.id} />
       </div>
     </section>
   );
