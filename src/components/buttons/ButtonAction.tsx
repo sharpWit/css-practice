@@ -14,7 +14,7 @@ interface IButtonActionProps {
 
 const ButtonAction: FC<IButtonActionProps> = ({ id }) => {
   const router = useRouter();
-  const { mutate: deletePost, isSuccess } = useMutation({
+  const { mutate: deletePost, isSuccess: isSuccessDelete } = useMutation({
     mutationFn: async () => {
       return axios.delete(`/api/posts/${id}`);
     },
@@ -30,7 +30,7 @@ const ButtonAction: FC<IButtonActionProps> = ({ id }) => {
   return (
     <div className="flex items-center gap-2">
       <Link
-        href="/blog/articles/edit/1"
+        href={`/blog/articles/edit/${id}`}
         className="flex items-center gap-2 text-primary-content btn btn-outline"
       >
         <Pencil />
@@ -40,7 +40,7 @@ const ButtonAction: FC<IButtonActionProps> = ({ id }) => {
         onClick={() => deletePost()}
         className="flex items-center gap-2 btn btn-error"
       >
-        {isSuccess ? (
+        {isSuccessDelete ? (
           <Loading />
         ) : (
           <>

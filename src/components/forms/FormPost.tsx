@@ -11,10 +11,21 @@ import { SubmitHandler, useForm } from "react-hook-form";
 interface IFormPostProps {
   submit: SubmitHandler<TFormInputPost>;
   isEditing: boolean;
+  initialValue?: TFormInputPost;
+  isSuccessCreate: boolean;
+  isSuccessEdit: boolean;
 }
 
-const FormPost: FC<IFormPostProps> = ({ submit, isEditing }) => {
-  const { register, handleSubmit } = useForm<TFormInputPost>();
+const FormPost: FC<IFormPostProps> = ({
+  submit,
+  isEditing,
+  initialValue,
+  isSuccessCreate,
+  isSuccessEdit,
+}) => {
+  const { register, handleSubmit } = useForm<TFormInputPost>({
+    defaultValues: initialValue,
+  });
 
   // Fetch tag lists
   const { data: tagsData, isLoading: isLoadingTags } = useQuery<Tag[]>({
@@ -68,7 +79,13 @@ const FormPost: FC<IFormPostProps> = ({ submit, isEditing }) => {
         type="submit"
         className="btn btn-primary text-primary-content w-full max-w-lg"
       >
-        {isEditing ? "Update" : "Create"}
+        {isEditing
+          ? isSuccessEdit
+            ? "Updating..."
+            : "Update"
+          : isSuccessCreate
+          ? "Creating..."
+          : "Create"}
       </button>
     </form>
   );

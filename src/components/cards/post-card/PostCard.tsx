@@ -18,7 +18,7 @@ const PostCard: FC<IPostsProps> = ({ post }) => {
     <div className="card w-full bg-base-content text-primary-content border shadow-md">
       <div className="card-body">
         <h2 className="card-title">{title}</h2>
-        <p>{content}</p>
+        <p>{content.slice(0, 99)}</p>
         <div className="badge badge-primary">{tags.name}</div>
         <div className="card-actions justify-end">
           <Link href={`/blog/articles/${id}`} className="hover:underline">

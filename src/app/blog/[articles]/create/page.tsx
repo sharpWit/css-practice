@@ -13,7 +13,7 @@ const CreatePost = () => {
     createPost(data);
   };
 
-  const { mutate: createPost, isSuccess } = useMutation({
+  const { mutate: createPost, isSuccess: isSuccessCreate } = useMutation({
     mutationFn: (newPost: TFormInputPost) => {
       return axios.post("/api/posts/create", newPost);
     },
@@ -30,7 +30,12 @@ const CreatePost = () => {
       <h1 className="text-lg md:text-2xl font-bold text-primary-content text-center">
         Add Post
       </h1>
-      <FormPost submit={handleCreatePost} isEditing={false} />
+      <FormPost
+        submit={handleCreatePost}
+        isEditing={false}
+        isSuccessEdit={false}
+        isSuccessCreate={isSuccessCreate}
+      />
     </section>
   );
 };

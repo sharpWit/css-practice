@@ -7,6 +7,26 @@ interface IContextProps {
   };
 }
 
+export const GET = async (req: Request, context: IContextProps) => {
+  try {
+    const { params } = context;
+    const post = await db.post.findFirst({
+      where: {
+        id: params.postId,
+      },
+      include: {
+        tags: true,
+      },
+    });
+    return NextResponse.json(post, { status: 200 });
+  } catch (error) {
+    return NextResponse.json(
+      { message: "Post could not be fetched!" },
+      { status: 500 }
+    );
+  }
+};
+
 export const DELETE = async (req: Request, context: IContextProps) => {
   try {
     const { params } = context;
